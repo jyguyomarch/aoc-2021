@@ -48,10 +48,9 @@ for line in lines:
             boards.append(board_tmp.copy())
             board_tmp.clear()
 
-for board in boards:
-    print(board)
-
 # Play Bingo
+#list of tuples (board, winning sum, draw number)
+winning_list = []
 winning_draw = -1
 winning_board_sum = -1
 for draw in draw_numbers:
@@ -65,13 +64,21 @@ for draw in draw_numbers:
         # Check board for win
         winning_board_sum = winning_board(board)
         if winning_board_sum > 0:
+            winning_list.append((board, winning_board_sum, draw))
             winning_draw = draw
-            break
-    if winning_board_sum > 0: break
+    for board, board_sum, draw_num in winning_list:
+        try:
+            boards.remove(board)
+        except ValueError:
+            #ignore board was already removed
+            pass
 
-for board in boards:
-    print(board)
+first_board, first_board_sum, first_draw_num = winning_list[0]
+print(f'First win draw number: {first_draw_num}')
+print(f'First winning board sum: {first_board_sum}')
+print(f'First win Final Score: {first_board_sum * first_draw_num}')
 
-print(f'Last draw number: {winning_draw}')
-print(f'Winning board sum: {winning_board_sum}')
-print(f'Final Score: {winning_board_sum * winning_draw}')
+last_board, last_board_sum, last_draw_num = winning_list[-1]
+print(f'Last win draw number: {last_draw_num}')
+print(f'Lastt winning board sum: {last_board_sum}')
+print(f'Last win Final Score: {last_board_sum * last_draw_num}')
