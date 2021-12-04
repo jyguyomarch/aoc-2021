@@ -1,4 +1,4 @@
-#--- Day 2: Binary Diagnostic ---
+#--- Day 3: Binary Diagnostic ---
 #https://adventofcode.com/2021/day/3
 
 def calc_freq(bin_list):
