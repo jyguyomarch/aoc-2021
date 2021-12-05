@@ -9,11 +9,25 @@ def draw_line(vmap, start, end):
     x2, y2 = end
     if x1 == x2 or y1 == y2:
         #only consider straight lines
-        vmap[y1][x1] += 1
-        vmap[y2][x2] += 1
+        #vmap[y1][x1] += 1
+        #vmap[y2][x2] += 1
+        if x1 == x2:
+            if y2 > y1:
+                for i in range(y2 - y1 + 1):
+                    vmap[y1+i][x1] += 1
+            if y1 > y2:
+                for i in range(y1 - y2 + 1):
+                    vmap[y1-i][x1] += 1
+        if y1 == y2:
+            if x2 > x1:
+                for i in range(x2 - x1 + 1):
+                    vmap[y1][x1+i] += 1
+            if x1 > x2:
+                for i in range(x1 - x2 + 1):
+                    vmap[y1][x1-i] += 1
 
 # Get data
-f = open('d5_hydro_vents/vents_input_test.txt','r')
+f = open('d5_hydro_vents/vents_input.txt','r')
 lines = f.read().splitlines()
 
 # Process data to a list of tuples (x1, y1), (x2, y2)
@@ -41,5 +55,5 @@ for from_end, to_end in vents_tuple:
 print(vent_map)
 
 danger_count = np.count_nonzero(vent_map >= 2)
-
+print(vents_tuple)
 print(f'Danger count: {danger_count}')
