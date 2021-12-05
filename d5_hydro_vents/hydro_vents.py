@@ -11,6 +11,6 @@ vents_tuple = []
 for line in lines:
     re_match = re.search(r"(\d+),(\d+) -> (\d+),(\d+)", line)
     x1, y1, x2, y2 = re_match.groups()
-    vents_tuple.append([(int(x1), int(y1)), (int(x2), (int(y2)))])
+    vents_tuple.append(((int(x1), int(y1)), (int(x2), (int(y2)))))
 
 print(vents_tuple)
