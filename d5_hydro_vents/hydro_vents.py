@@ -25,6 +25,23 @@ def draw_line(vmap, start, end):
             if x1 > x2:
                 for i in range(x1 - x2 + 1):
                     vmap[y1][x1-i] += 1
+    else:
+        #diagonal
+        dx = 0
+        dy = 0
+        diag_range = 0
+        if x1 < x2:
+            dx = 1
+            diag_range = x2 - x1
+        else:
+            dx = -1
+            diag_range = x1 - x2
+        if y1 < y2:
+            dy = 1
+        else:
+            dy = -1
+        for i in range(diag_range + 1):
+            vmap[y1+(i*dy)][x1+(i*dx)] += 1
 
 # Get data
 f = open('d5_hydro_vents/vents_input.txt','r')
