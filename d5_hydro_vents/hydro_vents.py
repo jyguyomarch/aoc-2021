@@ -8,9 +8,7 @@ def draw_line(vmap, start, end):
     x1, y1 = start
     x2, y2 = end
     if x1 == x2 or y1 == y2:
-        #only consider straight lines
-        #vmap[y1][x1] += 1
-        #vmap[y2][x2] += 1
+        # consider straight lines
         if x1 == x2:
             if y2 > y1:
                 for i in range(y2 - y1 + 1):
@@ -26,7 +24,7 @@ def draw_line(vmap, start, end):
                 for i in range(x1 - x2 + 1):
                     vmap[y1][x1-i] += 1
     else:
-        #diagonal
+        # consider diagonals
         dx = 0
         dy = 0
         diag_range = 0
@@ -58,9 +56,6 @@ for line in lines:
     max_y = max(max_y, int(y1), int(y2))
     vents_tuple.append(((int(x1), int(y1)), (int(x2), (int(y2)))))
 
-print(vents_tuple)
-print(f'Max x: {max_x}, Max y: {max_y}')
-
 # Create empty vent map of zeros
 vent_map = np.zeros((max_y + 1, max_x + 1))
 
@@ -69,8 +64,7 @@ for from_end, to_end in vents_tuple:
     draw_line(vent_map, from_end, to_end)
 
 #find the max
-print(vent_map)
+print(f'Hydrothermal Venture Danger count: {np.count_nonzero(vent_map >= 2)}')
 
-danger_count = np.count_nonzero(vent_map >= 2)
-print(vents_tuple)
-print(f'Danger count: {danger_count}')
+# Part 1: 8350
+# Part 2: 19374
