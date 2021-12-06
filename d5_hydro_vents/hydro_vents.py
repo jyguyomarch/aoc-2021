@@ -2,6 +2,7 @@
 #https://adventofcode.com/2021/day/5
 
 import re
+import matplotlib.pyplot as plt
 import numpy as np
 
 def draw_line(vmap, start, end):
@@ -42,7 +43,7 @@ def draw_line(vmap, start, end):
             vmap[y1+(i*dy)][x1+(i*dx)] += 1
 
 # Get data
-f = open('d5_hydro_vents/vents_input.txt','r')
+f = open('d5_hydro_vents/squid_input.txt','r')
 lines = f.read().splitlines()
 
 # Process data to a list of tuples (x1, y1), (x2, y2)
@@ -65,6 +66,9 @@ for from_end, to_end in vents_tuple:
 
 #find the max
 print(f'Hydrothermal Venture Danger count: {np.count_nonzero(vent_map >= 2)}')
+
+plt.imshow(vent_map, cmap='hot', interpolation='nearest')
+plt.show()
 
 # Part 1: 8350
 # Part 2: 19374
