@@ -1,8 +1,12 @@
 #--- Day 1: Sonar Sweep ---
 #https://adventofcode.com/2021/day/1
 
-f = open('d1_sonar_sweep/input.txt','r')
-lines = f.readlines()
+import sys
+
+lines = sys.stdin.read().splitlines()
+if len(lines) == 0:
+    f = open('d1_sonar_sweep/input.txt','r')
+    lines = f.readlines()
 depth_readings = [int(depth) for depth in lines]
 
 #PART 1: compare sliding window of depth 2
