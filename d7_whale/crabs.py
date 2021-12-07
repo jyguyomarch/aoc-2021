@@ -1,12 +1,12 @@
-#--- Day 6: Lanternfish ---
+#--- Day 7: The Treachery of Whales ---
 #https://adventofcode.com/2021/day/7
 
 # Get Data
 f = open('d7_whale/crab_input.txt','r')
 crabs = [int(pos) for pos in f.read().split(',')]
 
-min_fuel = None
-min_fuel_tri = None
+min_fuel = float('inf')
+min_fuel_tri = float('inf')
 
 # brute force going through all possibilities
 for i in range(max(crabs)):
@@ -16,10 +16,8 @@ for i in range(max(crabs)):
         n = abs(crab - i)
         fuel += n
         fuel_tri += n*(n+1)/2
-    if min_fuel is None or fuel < min_fuel:
-        min_fuel = fuel
-    if min_fuel_tri is None or fuel_tri <  min_fuel_tri:
-        min_fuel_tri = fuel_tri
+    min_fuel = min(min_fuel, fuel)
+    min_fuel_tri = min(min_fuel_tri, fuel_tri)
 
 print(min_fuel)
 print(min_fuel_tri)
