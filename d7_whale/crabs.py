@@ -9,7 +9,7 @@ min_fuel = float('inf')
 min_fuel_tri = float('inf')
 
 # brute force going through all possibilities
-for i in range(max(crabs)):
+for i in range(min(crabs), max(crabs)):
     fuel = 0
     fuel_tri = 0
     for crab in crabs:
