@@ -1,6 +1,9 @@
 #--- Day 8: Seven Segment Search ---
 #https://adventofcode.com/2021/day/8
 
+from typing import DefaultDict
+
+
 def common_seg(sig, pattern):
     count = 0
     for char in sig:
@@ -16,9 +19,11 @@ for log in lines:
 
 # count 1, 4, 7, 8
 ones = fours = sevens = eights = 0
+counter = DefaultDict(int)
 for entry in journal:
     sig_pat, digits = entry
     for d in digits.split(" "):
+        counter[len(d)] += 1
         if len(d) == 2: ones += 1
         elif len(d) == 4: fours += 1
         elif len(d) == 3: sevens += 1
@@ -26,6 +31,7 @@ for entry in journal:
 
 unique_digits = ones + fours + sevens + eights
 print(f"Digits with unique patterns: {unique_digits}")
+print(f"Digits with unique patterns: {counter[2] + counter[3] + counter[4] + counter[7]}")
 
 total = 0
 for entry in journal:
