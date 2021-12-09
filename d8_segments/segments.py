@@ -40,19 +40,13 @@ for entry in journal:
         elif len(d) == 3: output += '7'
         elif len(d) == 7: output += '8'
         elif len(d) == 5:
-            if common_seg(d, pat_ones) == 2:
-                output += '3'
-            elif common_seg(d, pat_fours) == 3:
-                output += '5'
-            else:
-                output += '2'
+            if common_seg(d, pat_ones) == 2: output += '3'
+            elif common_seg(d, pat_fours) == 3: output += '5'
+            else: output += '2'
         elif len(d) == 6:
-            if common_seg(d, pat_fours) == 4:
-                output += '9'
-            elif common_seg(d, pat_sevens) == 3:
-                output += '0'
-            else:
-                output += '6'
+            if common_seg(d, pat_fours) == 4: output += '9'
+            elif common_seg(d, pat_sevens) == 3: output += '0'
+            else:output += '6'
     total += int(output)
 
 print(f'Total: {total}')
