@@ -79,6 +79,8 @@ for step in range(400):
         
     #reset flashed
     octo_field = np.where(octo_field > 9, 0, octo_field)
+
+    #verify if flash is synchronized accross all octopus
     if np.all((octo_field == 0)):
         print(f'Flashed synchronization at step: {step + 1}')
 
