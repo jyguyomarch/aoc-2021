@@ -61,7 +61,7 @@ octo_field = np.array(octo_raw)
 rows, columns = octo_field.shape
 flashes = 0
 # 1000 steps
-for step in range(100):
+for step in range(400):
     #increase energy
     octo_field += 1
     
@@ -76,10 +76,13 @@ for step in range(100):
     unique, counts = np.unique(octo_field, return_counts=True)
     if float('inf') in unique:
         flashes += counts[-1]
-
+        
     #reset flashed
     octo_field = np.where(octo_field > 9, 0, octo_field)
+    if np.all((octo_field == 0)):
+        print(f'Flashed synchronization at step: {step + 1}')
 
 print(flashes)
 
-# Sol 1
+# Sol 1: 1571
+# Sol 2: 387
